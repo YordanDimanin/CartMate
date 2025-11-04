@@ -1,9 +1,10 @@
+import React from 'react';
 import { Button, Card } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function Index() {
+const Settings = () => {
   return (
-      <SafeAreaView>
+    <SafeAreaView>
         <Card>
           <Card.Title title="Card Title" subtitle="Card Subtitle" />
           <Card.Actions>
@@ -12,5 +13,7 @@ export default function Index() {
           </Card.Actions>
         </Card>
       </SafeAreaView>
-  );
+  )
 }
+
+export default Settings;
