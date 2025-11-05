@@ -147,20 +147,22 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     marginHorizontal: 16,
     flexDirection: 'row',
-    
     alignItems: 'center',
+    // flexWrap: 'wrap',
   },
   itemText: {
     color: '#E6E9ED',
     fontSize: 18,
+    maxWidth: '70%',
   },
   itemTextChecked: {
     textDecorationLine: 'line-through',
     color: '#888',
   },
   itemAmount: {
-    color: '#9a9b9dff',
-    fontSize: 20,
+    color: '#a8aaadff',
+    fontSize: 18,
     marginLeft: 15,
+    maxWidth: '30%',
   },
 });

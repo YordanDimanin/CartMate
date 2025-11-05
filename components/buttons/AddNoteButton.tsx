@@ -17,7 +17,7 @@ const AddNoteButton = ({ onPress }: Props) => {
 const styles = StyleSheet.create({
   fab: {
     position: 'absolute',
-    bottom: 40,
+    bottom: 120,
     right: 20,
   },
 });
