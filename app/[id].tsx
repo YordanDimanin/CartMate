@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import AddNoteButton from '../components/buttons/AddNoteButton';
 import AddNoteModal from '../components/modals/AddNoteModal';
 import DeleteItemModal from '../components/modals/DeleteItemModal';
+import EditNoteModal from '../components/modals/EditNoteModal';
 import { addItemToList, deleteItemFromList, getList, updateItemInList } from '../lib/storage';
 
 // Types
@@ -28,6 +29,7 @@ export default function ListDetails() {
   const [list, setList] = useState<List | null>(null);
   const [isAddModalVisible, setAddModalVisible] = useState(false);
   const [isDeleteModalVisible, setDeleteModalVisible] = useState(false);
+  const [isEditModalVisible, setEditModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState<Item | null>(null);
 
   const fetchList = useCallback(async () => {
@@ -61,9 +63,23 @@ export default function ListDetails() {
     }
   };
 
+  const handleEditItem = async (item: { title: string; amount: string }) => {
+    if (selectedItem) {
+      await updateItemInList(id, selectedItem.id, item);
+      fetchList();
+      setEditModalVisible(false);
+      setSelectedItem(null);
+    }
+  };
+
   const openDeleteModal = (item: Item) => {
     setSelectedItem(item);
     setDeleteModalVisible(true);
+  };
+
+  const openEditModal = (item: Item) => {
+    setSelectedItem(item);
+    setEditModalVisible(true);
   };
 
   if (!list) {
@@ -88,7 +104,7 @@ export default function ListDetails() {
           <Pressable
             style={styles.itemContainer}
             onPress={() => handleToggleItem(item.id, item.isChecked)}
-            onLongPress={() => openDeleteModal(item)}>
+            onLongPress={() => openEditModal(item)}>
             <Text style={[styles.itemText, item.isChecked && styles.itemTextChecked]}>
               {item.title}
             </Text>
@@ -112,6 +128,13 @@ export default function ListDetails() {
         onClose={() => setDeleteModalVisible(false)}
         onDelete={handleDeleteItem}
         itemTitle={selectedItem?.title || ''}
+      />
+
+      <EditNoteModal
+        visible={isEditModalVisible}
+        onClose={() => setEditModalVisible(false)}
+        onSave={handleEditItem}
+        item={selectedItem}
       />
     </SafeAreaView>
   );
