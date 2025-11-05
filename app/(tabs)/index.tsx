@@ -6,7 +6,8 @@ import AddListButton from '../../components/buttons/AddListButton';
 import Card from '../../components/Card';
 import AddListModal from '../../components/modals/AddListModal';
 import DeleteListModal from '../../components/modals/DeleteListModal';
-import { createList, deleteList, getLists } from '../../lib/storage';
+import EditListModal from '../../components/modals/EditListModal';
+import { createList, deleteList, getLists, updateList } from '../../lib/storage';
 
 // Types
 interface Item { id: string; title: string; amount: string; isChecked: boolean; }
@@ -16,12 +17,14 @@ export default function Index() {
   const [lists, setLists] = useState<List[]>([]);
   const [isAddModalVisible, setAddModalVisible] = useState(false);
   const [isDeleteModalVisible, setDeleteModalVisible] = useState(false);
+  const [isEditModalVisible, setEditModalVisible] = useState(false);
   const [selectedList, setSelectedList] = useState<List | null>(null);
+  const [editingList, setEditingList] = useState<List | null>(null);
 
   const fetchLists = useCallback(async () => {
     const storedLists = await getLists();
     setLists(storedLists);
-  }, []);
+  }, [fetchLists]);
 
   useEffect(() => { fetchLists(); }, [fetchLists]);
 
@@ -40,9 +43,21 @@ export default function Index() {
     }
   };
 
+  const handleEditList = async (listId: string, newTitle: string) => {
+    await updateList(listId, { title: newTitle });
+    fetchLists();
+    setEditModalVisible(false);
+    setEditingList(null);
+  };
+
   const openDeleteModal = (list: List) => {
     setSelectedList(list);
     setDeleteModalVisible(true);
+  };
+
+  const openEditModal = (list: List) => {
+    setEditingList(list);
+    setEditModalVisible(true);
   };
 
   const renderRightActions = (list: List) => (
@@ -60,9 +75,9 @@ export default function Index() {
             <Swipeable key={list.id} renderRightActions={() => renderRightActions(list)}>
               <Card
                 title={list.title}
-                id={list.id} onLongPress={function (): void {
-                  throw new Error('Function not implemented.');
-                } }              />
+                id={list.id}
+                onLongPress={() => openEditModal(list)}
+              />
             </Swipeable>
           ))}
         </View>
@@ -81,6 +96,13 @@ export default function Index() {
         onClose={() => setDeleteModalVisible(false)}
         onDelete={handleDeleteList}
         listTitle={selectedList?.title || ''}
+      />
+
+      <EditListModal
+        visible={isEditModalVisible}
+        onClose={() => setEditModalVisible(false)}
+        onSave={handleEditList}
+        list={editingList}
       />
     </SafeAreaView>
   );
