@@ -1,50 +1,37 @@
-# Welcome to your Expo app 👋
+# 🛍️ ShopList
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+**Your smart shopping companion — manage lists, add items, and shop smarter.**
 
-## Get started
+ShopList is a simple, elegant e-shopping list app built with **React Native** and **Expo**.  
+Stay organized while shopping with multiple lists, item tracking, and smooth swipe gestures — all wrapped in a clean dark interface.
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+## ✨ Features
 
-2. Start the app
+- 🗒️ **Multiple shopping lists** — create, rename, and delete lists  
+- ➕ **Add and edit items** with quantities or notes  
+- ✅ **Check off items** as you shop  
+- 🧹 **Swipe to delete** items or entire lists  
+- 💾 **Offline support** — all data is stored locally on your device  
+- 🎨 **Dark modern UI** designed for everyday use  
+- ⚡ Built with **Expo Router**, **Reanimated**, and **Gesture Handler**
 
-   ```bash
-   npx expo start
-   ```
+---
 
-In the output, you'll find options to open the app in a
+## 🧩 Tech Stack
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- **React Native**  
+- **Expo Router**  
+- **React Native Reanimated**  
+- **React Native Gesture Handler**  
+- **AsyncStorage / Local Storage**  
+- **TypeScript**
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## 💚 Open Source
 
-When you're ready, run:
+ShopList is **completely free** and **open source**.  
+If you like the project, feel free to ⭐ **star the repository** on GitHub and contribute!
 
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
